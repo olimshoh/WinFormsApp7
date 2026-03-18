@@ -8,6 +8,10 @@ namespace AbiturientApp
             public int Shkola;
             public int Shifr;
             public int Balli;
+        public override string ToString()
+        {
+            return $"{Familia} (Школа {Shkola}, Шифр {Shifr}, Баллы {Balli})";
         }
+    }
    
 }

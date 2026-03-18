@@ -2,9 +2,9 @@
 using System.Windows.Forms;
 namespace AbiturientApp
 {
-    public partial class DialogForm : Form
+    public partial class Abiturient_F : Form
     {
-        public DialogForm()
+        public Abiturient_F()
         {
             InitializeComponent();
         }
@@ -47,10 +47,10 @@ namespace AbiturientApp
                         throw new Exception("Вы не ввели количество баллов!");
                     }
                     int ball = Convert.ToInt32(Balli_TB.Text);
-                    if (ball < 0 || ball > 20)
+                    if (ball < 0 || ball > 200)
                     {
                         Balli_TB.Focus();
-                        throw new Exception("Баллы должны быть от 0 до 20!");
+                        throw new Exception("Баллы должны быть от 0 до 200!");
                     }
                 }
                 catch (FormatException)
