@@ -1,6 +1,5 @@
 using System;
 using System.Windows.Forms;
-
 namespace AbiturientApp
 {
     public partial class Form1 : Form
@@ -9,14 +8,10 @@ namespace AbiturientApp
         {
             InitializeComponent();
         }
-
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             Abiturient_F dialog = new Abiturient_F();
             dialog.Text = "Добавление абитуриента";
-
-            // Поля диалога уже пусты при создании, можно не очищать принудительно
-
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 TAbiturient abiturient = new TAbiturient
@@ -29,48 +24,36 @@ namespace AbiturientApp
                 listBoxAbits.Items.Add(abiturient);
             }
         }
-
         private void buttonChange_Click(object sender, EventArgs e)
         {
-            // Проверка наличия элементов в списке
             if (listBoxAbits.Items.Count == 0)
             {
                 MessageBox.Show("Нет данных для изменения", "Информация");
                 return;
             }
-
             // Проверка, что выделен элемент
             if (listBoxAbits.SelectedIndex == -1)
             {
                 MessageBox.Show("Не выбран элемент в списке", "Информация");
                 return;
             }
-
-            // Получаем выбранный объект
             TAbiturient abiturient = listBoxAbits.SelectedItem as TAbiturient;
             if (abiturient == null) return;
-
-            // Создаём диалог и заполняем его текущими данными
             Abiturient_F dialog = new Abiturient_F();
             dialog.Text = "Изменение данных";
             dialog.Familia_TB.Text = abiturient.Familia;
             dialog.Shkola_TB.Text = abiturient.Shkola.ToString();
             dialog.Shifr_TB.Text = abiturient.Shifr.ToString();
             dialog.Balli_TB.Text = abiturient.Balli.ToString();
-
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                // Обновляем поля объекта
                 abiturient.Familia = dialog.Familia_TB.Text.Trim();
                 abiturient.Shkola = Convert.ToInt32(dialog.Shkola_TB.Text.Trim());
                 abiturient.Shifr = Convert.ToInt32(dialog.Shifr_TB.Text.Trim());
                 abiturient.Balli = Convert.ToInt32(dialog.Balli_TB.Text.Trim());
-
-                // Обновляем элемент в списке (чтобы перерисовалось отображение)
                 listBoxAbits.Items[listBoxAbits.SelectedIndex] = abiturient;
             }
         }
-
         private void buttonDel_Click(object sender, EventArgs e)
         {
             if (listBoxAbits.SelectedIndex != -1)
