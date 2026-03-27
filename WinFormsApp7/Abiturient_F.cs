@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 namespace AbiturientApp
 {
@@ -8,7 +8,7 @@ namespace AbiturientApp
         {
             InitializeComponent();
         }
-                private void DialogForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void DialogForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.DialogResult == DialogResult.OK)
             {
@@ -24,7 +24,12 @@ namespace AbiturientApp
                         Shkola_TB.Focus();
                         throw new Exception("Вы не ввели номер школы!");
                     }
-                    int shkola = Convert.ToInt32(Shkola_TB.Text);
+                    int shkola;
+                    if (!int.TryParse(Shkola_TB.Text, out shkola))
+                    {
+                        Shkola_TB.Focus();
+                        throw new Exception("Введите целое число для школы!");
+                    }
                     if (shkola < 1 || shkola > 200)
                     {
                         Shkola_TB.Focus();
@@ -35,7 +40,13 @@ namespace AbiturientApp
                         Shifr_TB.Focus();
                         throw new Exception("Вы не ввели шифр специальности!");
                     }
-                    int shifr = Convert.ToInt32(Shifr_TB.Text);
+                    int shifr;
+                    if (!int.TryParse(Shifr_TB.Text, out shifr))
+                    {
+                        Shifr_TB.Focus();
+                        throw new Exception("Введите целое число для шифра!");
+                    }
+
                     if (shifr < 1 || shifr > 300)
                     {
                         Shifr_TB.Focus();
@@ -46,22 +57,22 @@ namespace AbiturientApp
                         Balli_TB.Focus();
                         throw new Exception("Вы не ввели количество баллов!");
                     }
-                    int ball = Convert.ToInt32(Balli_TB.Text);
+                    int ball;
+                    if (!int.TryParse(Balli_TB.Text, out ball))
+                    {
+                        Balli_TB.Focus();
+                        throw new Exception("Введите целое число для баллов!");
+                    }
                     if (ball < 0 || ball > 200)
                     {
                         Balli_TB.Focus();
                         throw new Exception("Баллы должны быть от 0 до 200!");
                     }
                 }
-                catch (FormatException)
-                {
-                    e.Cancel = true;
-                    MessageBox.Show("Введите целое число!", "Ошибка");
-                }
                 catch (Exception ex)
                 {
                     e.Cancel = true;
-                    MessageBox.Show(ex.Message, "Ошибка");
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
