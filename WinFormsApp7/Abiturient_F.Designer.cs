@@ -1,6 +1,6 @@
 ﻿namespace AbiturientApp
 {
-    partial class DialogForm
+    partial class Abiturient_F
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -28,7 +28,6 @@
 
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogForm));
             Familia_TB = new TextBox();
             Shkola_TB = new TextBox();
             Shifr_TB = new TextBox();
@@ -43,44 +42,40 @@
             // 
             // Familia_TB
             // 
-            Familia_TB.Location = new Point(169, 134);
+            Familia_TB.Location = new Point(169, 20);
             Familia_TB.Multiline = true;
             Familia_TB.Name = "Familia_TB";
             Familia_TB.Size = new Size(200, 45);
             Familia_TB.TabIndex = 1;
-            Familia_TB.TextAlign = HorizontalAlignment.Center;
             // 
             // Shkola_TB
             // 
-            Shkola_TB.Location = new Point(169, 185);
+            Shkola_TB.Location = new Point(169, 79);
             Shkola_TB.Multiline = true;
             Shkola_TB.Name = "Shkola_TB";
             Shkola_TB.Size = new Size(200, 45);
             Shkola_TB.TabIndex = 3;
-            Shkola_TB.TextAlign = HorizontalAlignment.Center;
             // 
             // Shifr_TB
             // 
-            Shifr_TB.Location = new Point(169, 236);
+            Shifr_TB.Location = new Point(169, 133);
             Shifr_TB.Multiline = true;
             Shifr_TB.Name = "Shifr_TB";
             Shifr_TB.Size = new Size(200, 45);
             Shifr_TB.TabIndex = 5;
-            Shifr_TB.TextAlign = HorizontalAlignment.Center;
             // 
             // Balli_TB
             // 
-            Balli_TB.Location = new Point(169, 287);
+            Balli_TB.Location = new Point(169, 188);
             Balli_TB.Multiline = true;
             Balli_TB.Name = "Balli_TB";
             Balli_TB.Size = new Size(200, 45);
             Balli_TB.TabIndex = 7;
-            Balli_TB.TextAlign = HorizontalAlignment.Center;
             // 
             // Ok_B
             // 
             Ok_B.DialogResult = DialogResult.OK;
-            Ok_B.Location = new Point(33, 346);
+            Ok_B.Location = new Point(33, 257);
             Ok_B.Name = "Ok_B";
             Ok_B.Size = new Size(130, 53);
             Ok_B.TabIndex = 8;
@@ -89,7 +84,7 @@
             // Cancel_B
             // 
             Cancel_B.DialogResult = DialogResult.Cancel;
-            Cancel_B.Location = new Point(169, 338);
+            Cancel_B.Location = new Point(169, 249);
             Cancel_B.Name = "Cancel_B";
             Cancel_B.Size = new Size(200, 61);
             Cancel_B.TabIndex = 9;
@@ -97,10 +92,10 @@
             // 
             // label1
             // 
-            label1.BackColor = SystemColors.ButtonFace;
+            label1.BackColor = SystemColors.Control;
             label1.BorderStyle = BorderStyle.Fixed3D;
             label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label1.Location = new Point(33, 134);
+            label1.Location = new Point(33, 20);
             label1.Name = "label1";
             label1.RightToLeft = RightToLeft.No;
             label1.Size = new Size(130, 45);
@@ -112,7 +107,7 @@
             // 
             label2.BorderStyle = BorderStyle.Fixed3D;
             label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label2.Location = new Point(33, 185);
+            label2.Location = new Point(33, 79);
             label2.Name = "label2";
             label2.Size = new Size(130, 45);
             label2.TabIndex = 2;
@@ -123,7 +118,7 @@
             // 
             label3.BorderStyle = BorderStyle.Fixed3D;
             label3.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label3.Location = new Point(33, 236);
+            label3.Location = new Point(33, 133);
             label3.Name = "label3";
             label3.Size = new Size(130, 45);
             label3.TabIndex = 4;
@@ -133,20 +128,19 @@
             // label4
             // 
             label4.BorderStyle = BorderStyle.Fixed3D;
-            label4.Font = new Font("Times New Roman", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label4.Location = new Point(33, 287);
+            label4.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label4.Location = new Point(33, 188);
             label4.Name = "label4";
             label4.Size = new Size(130, 45);
             label4.TabIndex = 6;
-            label4.Text = "Баллы (0-20):";
+            label4.Text = "Баллы (0-200):";
             label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // DialogForm
+            // Abiturient_F
             // 
             AcceptButton = Ok_B;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             CancelButton = Cancel_B;
-            ClientSize = new Size(423, 516);
+            ClientSize = new Size(392, 334);
             Controls.Add(label1);
             Controls.Add(Familia_TB);
             Controls.Add(label2);
@@ -161,7 +155,7 @@
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "DialogForm";
+            Name = "Abiturient_F";
             Text = "Ввод данных";
             FormClosing += DialogForm_FormClosing;
             ResumeLayout(false);

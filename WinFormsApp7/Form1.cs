@@ -1,84 +1,69 @@
 using System;
 using System.Windows.Forms;
-
 namespace AbiturientApp
 {
     public partial class Form1 : Form
     {
-        private TAbiturient[] abits = new TAbiturient[100];
-        private int count = 0;
         public Form1()
         {
             InitializeComponent();
         }
-        private void UpdateList()
-        {
-            listBoxAbits.Items.Clear();
-            for (int i = 0; i < count; i++)
-            {
-                listBoxAbits.Items.Add(abits[i]);
-            }
-        }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            DialogForm dlg = new DialogForm();
-            dlg.Text = "Добавление абитуриента";
-            dlg.Familia_TB.Text = "";
-            dlg.Shkola_TB.Text = "";
-            dlg.Shifr_TB.Text = "";
-            dlg.Balli_TB.Text = "";
-            if (dlg.ShowDialog() == DialogResult.OK) 
+            Abiturient_F dialog = new Abiturient_F();
+            dialog.Text = "Добавление абитуриента";
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                TAbiturient t = new TAbiturient();
-                t.Familia = dlg.Familia_TB.Text.Trim();
-                t.Shkola = Convert.ToInt32(dlg.Shkola_TB.Text);
-                t.Shifr = Convert.ToInt32(dlg.Shifr_TB.Text);
-                t.Balli = Convert.ToInt32(dlg.Balli_TB.Text);
-                abits[count] = t;
-                count++;
-                UpdateList();
+                TAbiturient abiturient = new TAbiturient
+                {
+                    Familia = dialog.Familia_TB.Text.Trim(),
+                    Shkola = Convert.ToInt32(dialog.Shkola_TB.Text.Trim()),
+                    Shifr = Convert.ToInt32(dialog.Shifr_TB.Text.Trim()),
+                    Balli = Convert.ToInt32(dialog.Balli_TB.Text.Trim())
+                };
+                listBoxAbits.Items.Add(abiturient);
             }
         }
         private void buttonChange_Click(object sender, EventArgs e)
         {
-            if (listBoxAbits.SelectedIndex == -1)
+            if (listBoxAbits.Items.Count == 0)
             {
-                MessageBox.Show("Выберите абитуриента!", "Информация");
+                MessageBox.Show("Нет данных для изменения", "Информация");
                 return;
             }
-            TAbiturient t = (TAbiturient)listBoxAbits.SelectedItem;
-            DialogForm dlg = new DialogForm();
-            dlg.Text = "Изменение данных";
-            dlg.Familia_TB.Text = t.Familia;
-            dlg.Shkola_TB.Text = t.Shkola.ToString();
-            dlg.Shifr_TB.Text = t.Shifr.ToString();
-            dlg.Balli_TB.Text = t.Balli.ToString();
-            if (dlg.ShowDialog() == DialogResult.OK)
+            // Проверка, что выделен элемент
+            if (listBoxAbits.SelectedIndex == -1)
             {
-             
-                t.Familia = dlg.Familia_TB.Text.Trim();
-                t.Shkola = Convert.ToInt32(dlg.Shkola_TB.Text);
-                t.Shifr = Convert.ToInt32(dlg.Shifr_TB.Text);
-                t.Balli = Convert.ToInt32(dlg.Balli_TB.Text);
-                listBoxAbits.Items[listBoxAbits.SelectedIndex] = t;
+                MessageBox.Show("Не выбран элемент в списке", "Информация");
+                return;
+            }
+            TAbiturient abiturient = listBoxAbits.SelectedItem as TAbiturient;
+            if (abiturient == null) return;
+            Abiturient_F dialog = new Abiturient_F();
+            dialog.Text = "Изменение данных";
+            dialog.Familia_TB.Text = abiturient.Familia;
+            dialog.Shkola_TB.Text = abiturient.Shkola.ToString();
+            dialog.Shifr_TB.Text = abiturient.Shifr.ToString();
+            dialog.Balli_TB.Text = abiturient.Balli.ToString();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                abiturient.Familia = dialog.Familia_TB.Text.Trim();
+                abiturient.Shkola = Convert.ToInt32(dialog.Shkola_TB.Text.Trim());
+                abiturient.Shifr = Convert.ToInt32(dialog.Shifr_TB.Text.Trim());
+                abiturient.Balli = Convert.ToInt32(dialog.Balli_TB.Text.Trim());
+                listBoxAbits.Items[listBoxAbits.SelectedIndex] = abiturient;
             }
         }
         private void buttonDel_Click(object sender, EventArgs e)
         {
-            if (listBoxAbits.SelectedIndex == -1)
+            if (listBoxAbits.SelectedIndex != -1)
             {
-                MessageBox.Show("Выберите абитуриента!", "Информация");
-                return;
+                listBoxAbits.Items.RemoveAt(listBoxAbits.SelectedIndex);
             }
-            int index = listBoxAbits.SelectedIndex;
-            for (int i = index; i < count - 1; i++)
+            else
             {
-                abits[i] = abits[i + 1];
+                MessageBox.Show("Не выбран элемент в списке", "Информация");
             }
-            count--;
-            abits[count] = null;
-
-            UpdateList();
         }
     }
 }
